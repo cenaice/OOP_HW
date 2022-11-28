@@ -8,15 +8,6 @@ Test module for Homework 3, Problem 2
 
 from problem2 import Time
 
-
-
-
-
-
-
-
-
-
 if __name__ == "__main__":
     t1 = Time()
     t2 = Time(2, 30, "am")
