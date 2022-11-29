@@ -2,7 +2,7 @@
 Author: Victer Phiathep
 Object-Oriented Programming (50:198:113), Fall 2022
 
-This module contains a Time class implementation to be
+This module contains a Appointment class implementation to be
 used in Homework 5.
 """
 

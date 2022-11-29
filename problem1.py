@@ -6,9 +6,6 @@ Test module for Homework 3, Problem 1
 """
 
 
-from itertools import count
-
-
 def replace_element(L, oldel, newel):
     """
     This function returns a list in which every occurence of 
@@ -19,41 +16,45 @@ def replace_element(L, oldel, newel):
     else:
         if L[0] == oldel:
             L[0] = newel
-        # Can add sliced operands together
         return L[:1] + replace_element(L[1:], oldel, newel)
+
 
 def negative_sum(L):
     """
     The function returns True if L contains a pair of integers
     whose sum is negative and False otherwise
     """
-    if L == []:
-        return 0
+    print(L)
+    # L[0] will be passed and changed through the recursive loop
+    if len(L) == 2:
+        if L[0] + L[1] < 0:
+            return True
+        else:
+            return False
     else:
-        return L[0] + negative_sum(L[1:]) 
-    
+        if L[0] + L[1] < 0:
+            return True
+        else:
+            return negative_sum(L[2:])
+
 
 def count_pattern(astr):
     """
     This function returns the number of times the substring 
     "ou" appears in the string.
     """
-    if len(astr) == 2:
-        return count
+    # Base Case
+    if len(astr) == 0:
+        return 0
     else:
-        if astr[:2] == 'ou':
-            count += 1
-        return count + astr[1:]
+
+        # Checks for each pair
+        if astr[0:2] == 'ou':
+            # Add to count if pair of 'ou' is found
+            return count_pattern(astr[1:]) + 1
+        else:
+            # Continue recursively without adding
+            return count_pattern(astr[1:])
 
 
-    
-
-# L = [5, 4, 3, 5, 1]
-# print(L[1:] + L[1:3])
-# print(replace_element(L, 5, 100))
-
-# arr = [12, 8, 10, -50] 
-# print(negative_sum(arr))
-
-
-count_pattern('ouse mouse louse')
+# Call functions here

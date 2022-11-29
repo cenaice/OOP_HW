@@ -1,18 +1,132 @@
 """
-Author: 
+Author: Victer Phiathep
 Module for Homework 4, Problem 2
 Object Oriented Programming (50:198:113), Fall 2022
 
 Insert module documentation for Problem #2 here
 """
 
-## IMPLEMENT ALL FUNCTIONS FOR MATRICES BELOW.
-## DOCUMENT ALL FUNCTIONS APPROPRIATELY 
+# IMPLEMENT ALL FUNCTIONS FOR MATRICES BELOW.
+# DOCUMENT ALL FUNCTIONS APPROPRIATELY
 
 
-## USE THE FOLLOWING TEST CODE TO TEST YOUR FUNCTION 
-## IMPLEMENTATIONS ABOVE
+def dimension(M):
+    column = len(M)
+    row = 0
+    for x in M:
+        row = len(x)
+        return (column, row)
 
+
+def row(M, i):
+    """
+    This function returns the i-th column in matrix M
+    """
+    rows = []
+    for x in M:
+        if i < 0 or i > len(x):
+            raise IndexError("Out of range")
+        rows.append(x[i-1])
+    return rows
+
+
+def column(M, j):
+    """
+    This function returns the j-th column in the matrix M
+    """
+
+    if j < 0 or j > len(M):
+        raise IndexError("Out of range")
+    return M[j-1]
+
+
+def matrix_sum(A, B):
+    """
+    This function takes in two matrixes and adds them together to create a new
+    matrix.
+    """
+    # Check for the same column and rows in matrix
+    if len(A) != len(B):
+        raise IndexError("Out of range")
+    for x in range(len(A)): # Loops through matrix to make sure each List is equal
+        if len(A[x]) != len(B[x]):
+            raise IndexError("Out of range")
+    
+    new_matrix = [[A[i][j] + B[i][j]
+                    for j in range(len(A[0]))] for i in range(len(A))]
+    return new_matrix
+
+
+
+def matrix_difference(A, B):
+    """
+    This function takes in two matrixes and subtracts them to create a new
+    matrix.
+    """
+    # Check for the same column and rows in matrix
+    if len(A) != len(B):
+        raise IndexError("Out of range")
+    for x in range(len(A)): # Loops through matrix to make sure each List is equal
+        if len(A[x]) != len(B[x]):
+            raise IndexError("Out of range")
+
+    new_matrix = [[A[i][j] - B[i][j]
+                    for j in range(len(A[0]))] for i in range(len(A))]
+    return new_matrix
+
+
+def matrix_product(A, B):
+    """
+    This function takes in two matrixes and multiplies them to create a new
+    matrix.
+    """
+    # Check for the same column and rows in matrix
+    if len(A) != len(B):
+        raise IndexError("Out of range")
+    for x in range(len(A)): # Loops through matrix to make sure each List is equal
+        if len(A[x]) != len(B[x]):
+            raise IndexError("Out of range")
+    
+    new_matrix = [[A[i][j] * B[i][j]
+                    for j in range(len(A[0]))] for i in range(len(A))]
+    return new_matrix
+
+
+def reduce_matrix(M, i, j):
+    # Check if i and j are valid inputs
+    if len(M) < j:
+        raise IndexError("Out of range")
+    for x in M:
+        if len(x) < i:
+            raise IndexError("Out of range")
+
+    # Creating new matrix
+    new_matrix = []
+    for arr in M:
+        new_matrix.append(arr)
+    del new_matrix[j-1][i-1] # Deleted the ith row and jth column
+
+    return new_matrix
+
+
+
+def determinant(M):
+    # Check if it is a square matrix by checking if columns == row
+    for x in M:
+        if len(x) != len(M): # Checks if ROWS == COLUMNS
+            raise Exception("Matrix is not a square")
+
+
+def pretty_print(M):
+    """
+    This function prints our Matrix in a readable format.
+    """
+    for i in M:
+        print('\t'.join(map(str, i)))
+
+
+# USE THE FOLLOWING TEST CODE TO TEST YOUR FUNCTION
+# IMPLEMENTATIONS ABOVE
 if __name__ == "__main__":
     print("Testing module Problem 2, Homework 4: ")
     A = [[5, 3, -1], [9, 4, 12]]
