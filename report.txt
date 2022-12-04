@@ -1,0 +1,21 @@
+-Appointment 1-
+
+-Appointment Start: 10:30AM
+Appointment End: 12:00PM
+Location: Camden
+Description: Homework Help
+
+-Appointment 2-
+
+-Appointment Start: 7:00AM
+Appointment End: 2:00PM
+Location: Camden
+Description: Exam Review
+
+-Appointment 3-
+
+-Appointment Start: 3:00PM
+Appointment End: 4:01PM
+Location: Zoom
+Description: Meeting with Professor
+

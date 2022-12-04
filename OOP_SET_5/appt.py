@@ -14,8 +14,19 @@ class Appointment(Time):
         Constructor
         """
         # Must be specified/ No default parameters
-        if start_time.hour() < 7 or start_time.hour() > 21:
-            raise Exception("Time is not within appointment hours")
+        if end_time.am_pm() == "AM" and start_time.am_pm() == "AM":
+            if start_time.hour() < 7 or start_time.hour() > 12:
+                raise Exception("Time is not within appointment hours")
+            elif start_time.hour() > end_time.hour():
+                raise Exception("Time is not within appointment hours")
+        elif end_time.am_pm() == "PM" and start_time.am_pm() == "PM":
+            if start_time.hour() < 0 or start_time.hour() > 9:
+                raise Exception("Time is not within appointment hours")
+            elif start_time.hour() > end_time.hour()*12:
+                raise Exception("Time is not within appointment hours")
+            elif end_time.hour() > 9 or end_time.hour() < 0:
+                raise Exception("Time is not within appointment hours")
+
 
         self.__start_time = start_time # Time Instance should be passed in
         self.__end_time = end_time # Time instance should be passed in
@@ -42,20 +53,20 @@ class Appointment(Time):
         """
         Returns the location of the appointment
         """
-        return self.location
+        return self.__location
 
 
     def description(self):
         """
         Returns a description of the appointment
         """
-        return self.description
+        return self.__description
 
     def notes(self):
         """
         Returns any notes kept for the appointment
         """
-        return self.notes
+        return self.__notes
 
     def duration(self):
         """
@@ -73,12 +84,10 @@ class Appointment(Time):
         Returns True if there is a time conflict between two appointment objects,
         self and other should both be appointment objects
         """
-        if self.__end_time > other.__start_time:
-            return False
-        elif other.__end_time > self.__start_time:
-            return False
-        else:
+        if other.__start_time >= self.__start_time and other.__start_time <= self.__end_time:
             return True
+        else:
+            return False
 
     def __str__(self):
         """
@@ -92,4 +101,3 @@ class Appointment(Time):
         Returns a meaningful string representation of an appointment
         """
         return str(self)
-
